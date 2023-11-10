@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.sub-navbar > div{
+    padding: 10px 15px;
+    color: #c7c7c7;
+    cursor: pointer;
+}
+.sub-navbar > div:hover{
+    color: #fff;
+}
+.social-networking-icon{
+    display: flex;
+    gap: 5px;
+}
+.social-networking-icon > i{
+    font-size: 18px;
+    cursor: pointer;
+}
