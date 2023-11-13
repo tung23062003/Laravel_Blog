@@ -23,7 +23,7 @@
             <div><a href="{{route('post.index')}}">Blog</a></div>
             <div><a href="">About</a></div>
             <div><a href="">Contact</a></div>
-            <div><a href="">Ahihi</a></div>
+            <div><a href="/chat">QuickChat</a></div>
         </div>
         @endsection
         @section('icon-social')

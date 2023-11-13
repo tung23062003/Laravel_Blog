@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\MessageSent;
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -9,6 +10,9 @@ use App\Http\Controllers\FeaturedPostController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostModerationController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\ChatController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -55,3 +59,10 @@ Route::post('post/comment/add', [CommentController::class,'store'])->name('comme
 Route::post('post/comment/update', [CommentController::class,'update'])->name('comment.update');
 Route::post('post/comment/delete', [CommentController::class,'destroy'])->name('comment.destroy');
 Route::post('post/comment/reply', [CommentController::class, 'reply'])->name('comment.reply');
+
+Route::middleware('auth')->group(function(){
+    Route::get('chat', [ChatController::class,'showChat'])->name('chat');
+    Route::post('chat/message', [ChatController::class,'messageReceived'])->name('chat.message');
+});
+
+
