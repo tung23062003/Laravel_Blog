@@ -23,10 +23,10 @@
         @section('subnav')
             <div class="sub-navbar flex justify-center bg-zinc-900">
                 <div><a href="/">Home</a></div>
-                <div><a href="">Categories <i class="fa-solid fa-chevron-down text-xs" style="color: #fffff;"></a></i></div>
+                <div><a href="{{route('notdone')}}">Categories <i class="fa-solid fa-chevron-down text-xs" style="color: #fffff;"></a></i></div>
                 <div><a href="{{route('post.index')}}">Blog</a></div>
-                <div><a href="">About</a></div>
-                <div><a href="">Contact</a></div>
+                <div><a href="{{route('notdone')}}">About</a></div>
+                <div><a href="{{route('notdone')}}">Contact</a></div>
                 <div><a href="/chat">QuickChat</a></div>
                 @if (Auth::check() && Auth::user()->role == 'admin')
                     <button class="bg-red-500 text-white absolute p-1 rounded-md right-[300px] top-[76px]"><a href="{{route('admin.post.create')}}">Write post</a></button>

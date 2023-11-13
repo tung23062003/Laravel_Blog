@@ -51,4 +51,8 @@ class CategoryController extends Controller
         $this->categoryService->deleteCategory($category);
         return redirect()->route('category.index')->with('message', 'Delete category successfully');
     }
+
+    public function notdone(){
+        return redirect('/')->with('message', 'This page is not done');
+    }
 }

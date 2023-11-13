@@ -11,6 +11,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostModerationController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,8 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::get('admin/dashboard/featuredPost', [FeaturedPostController::class, 'index'])->name('admin.featuredPost');
     Route::get('admin/dashboard/featuredPost/add/{post}', [FeaturedPostController::class, 'addToFeatured'])->name('admin.featuredPost.add');
     Route::get('admin/dashboard/featuredPost/remove/{post}', [FeaturedPostController::class, 'removeFromFeatured'])->name('admin.featuredPost.remove');
+
+    Route::resource('admin/dashboard/user', UserController::class)->names('user');
 });
 
 // Post
@@ -64,5 +67,7 @@ Route::middleware('auth')->group(function(){
     Route::get('chat', [ChatController::class,'showChat'])->name('chat');
     Route::post('chat/message', [ChatController::class,'messageReceived'])->name('chat.message');
 });
+
+Route::get('notdone', [CategoryController::class,'notdone'])->name('notdone');
 
 
