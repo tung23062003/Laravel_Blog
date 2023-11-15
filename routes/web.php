@@ -11,6 +11,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostModerationController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,6 +44,7 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::get('admin/dashboard/featuredPost/remove/{post}', [FeaturedPostController::class, 'removeFromFeatured'])->name('admin.featuredPost.remove');
 
     Route::resource('admin/dashboard/user', UserController::class)->names('user');
+    Route::resource('admin/dashboard/tag', TagController::class)->names('tag');
 });
 
 // Post

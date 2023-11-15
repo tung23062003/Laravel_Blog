@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin Post</title>
+    <title>Admin Tag</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -51,57 +51,32 @@
     <div id="container" class="flex">
         @include('layouts.sidebar_admin_dashboard')
         <div id="content" class="ml-[15%] bg-gray-100 w-[85%] mt-[70px] h-screen">
-            <a class="bg-red-500 text-white rounded-sm p-1 ml-[70px]" href="{{route('admin.post.create')}}">Add Post</a>
+            <a class="bg-red-500 text-white rounded-sm p-1 ml-[70px]" href="{{route('tag.create')}}">Add tag</a>
             <table class="mt-[30px]">
                 <tr>
                     <td class="w-[50px]">STT</td>
-                    <td class="w-[400px]">IMAGE</td>
-                    <td class="w-[600px]">TITTLE</td>
-                    <td class="w-[600px]">SLUG</td>
-                    <td class="w-[600px]">AUTHOR</td>
-                    <td class="w-[600px]">CONTENT</td>
+                    <td class="w-[400px]">NAME</td>
                     <td>Function</td>
                 </tr>
                 
-                @isset($posts)
-                    @foreach ($posts as $post)
+                @isset($tags)
+                    @foreach ($tags as $tag)
                         <tr>
                             <td class="text-center">{{$loop->index + 1}}</td>
-                            <td center>
-                                <div class="article-img w-[70px] h-[70px]">
-                                    <img src="{{URL::asset('/upload/' . $post->image)}}" class="w-full h-full object-cover" alt="">
-                                </div>
-                            </td>
-                            <td>{{$post->tittle}}</td>
-                            <td>{{$post->slug}}</td>
-                            <td>{{$post->user->name}}</td>
-                            <td>
-                                <p class="line-clamp-1"><?php
-                                    $dom = new DOMDocument();
-                                    $dom->loadHTML($post->content);
-                                    $paragraphs = $dom->getElementsByTagName('p');
-                                    
-                                    $result = '';
-                                    foreach ($paragraphs as $paragraph) {
-                                        $result .= $dom->saveHTML($paragraph);
-                                    }
-                                    echo strip_tags($result) . '...';?></p> {{--   {!!$post->content!!}   --}}
-                            </td>
+                            <td>{{$tag->name}}</td>
                             <td class="flex">
-                                <a class="bg-red-500 text-white rounded-sm p-1" href="{{route('post.show', ['post' => $post])}}">Xem</a>
-                                <a class="bg-red-500 text-white rounded-sm p-1 ml-1" href="{{route('admin.post.edit', ['post' => $post])}}">Edit</a>
-                                <form action="{{route('admin.post.destroy', ['post' => $post])}}" method="POST">
+                                <a class="bg-red-500 text-white rounded-sm p-1 ml-1" href="{{route('tag.edit', ['tag' => $tag])}}">Edit</a>
+                                <form action="{{route('tag.destroy', ['tag' => $tag])}}" method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <button class="bg-red-500 text-white rounded-sm p-1 ml-1" >Delete</button>
                                 </form>
-                                <a class="bg-blue-500 text-white rounded-sm p-1 ml-1" href="{{route('admin.featuredPost.add', ['post' => $post])}}">Featured</a>
                             </td>
                         </tr>
                     @endforeach
                 @endisset
             </table>
-            {{$posts->links()}}
+            {{$tags->links()}}
         </div>
     </div>
 </body>

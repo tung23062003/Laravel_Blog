@@ -14,7 +14,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface{
         return $this->user->count();
     }
     public function getUserPaginate(){
-        return $this->user->paginate(10);
+        return $this->user->simplePaginate(10);
     }
     public function fillUser($request){
         $user = new User();

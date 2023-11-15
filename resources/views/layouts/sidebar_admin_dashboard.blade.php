@@ -3,6 +3,7 @@
     <li><i class="fa-solid fa-clone"></i> <a href="{{route('category.index')}}">Category</a></li>
     <li><i class="fa-brands fa-product-hunt"></i> <a href="{{route('admin.post.index')}}">Post</a></li>
     <li><i class="fa-solid fa-user"></i> <a href="{{route('user.index')}}">User</a></li>
+    <li><i class="fa-solid fa-tag"></i> <a href="{{route('tag.index')}}">Tag</a></li>
     <li><i class="fa-solid fa-signs-post"></i> <a href="{{route('admin.moderation')}}">Post moderation</a></li>
     <li><i class="fa-solid fa-signs-post"></i> <a href="{{route('admin.featuredPost')}}">Featured Post</a></li>
 </div>

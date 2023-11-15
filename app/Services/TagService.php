@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 
+use App\Models\Tag;
 use App\Repositories\Interface\TagRepositoryInterface;
 
 class TagService{
@@ -18,5 +19,16 @@ class TagService{
     public function create($data){
         return $this->tagRepository->create($data);
     }
-    
+    public function getTagPaginate(){
+        return $this->tagRepository->getTagPaginate();
+    }
+    public function fillTag($request){
+        return $this->tagRepository->fillTag($request);
+    }
+    public function updateTag($request, Tag $tag){
+        return $this->tagRepository->updateTag($request, $tag);
+    }
+    public function deleteTag(Tag $tag){
+        return $this->tagRepository->deleteTag($tag);
+    }
 }

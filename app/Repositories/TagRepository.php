@@ -13,4 +13,19 @@ class TagRepository extends BaseRepository implements TagRepositoryInterface{
     public function getByName($name){
         return $this->tag->where("name", $name)->get();
     }
+    public function getTagPaginate(){
+        return $this->tag->simplePaginate(15);
+    }
+    public function fillTag($request){
+        $tag = new Tag();
+        $tag->fill($request);
+        $tag->save();
+    }
+    public function updateTag($request, Tag $tag){
+        $tag->fill($request);
+        $tag->save();
+    }
+    public function deleteTag(Tag $tag){
+        $tag->delete();
+    }
 }

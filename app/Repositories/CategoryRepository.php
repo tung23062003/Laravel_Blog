@@ -13,7 +13,7 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
         return $this->category->all();
     }
     public function getCategoryPaginate(){
-        return $this->category->paginate(15);
+        return $this->category->simplePaginate(15);
     }
     public function fillCategory($request){
         $category = new Category();

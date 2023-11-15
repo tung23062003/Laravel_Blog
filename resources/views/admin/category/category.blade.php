@@ -29,11 +29,11 @@
             border-radius: 20px 0 0 20px;
         }
         table, th, td {
-            border: 1px solid black;
+            border-bottom: 1px solid #ccc;
             border-collapse: collapse;
         }
         th,td{
-            padding: 10px
+            /* padding: 10px; */
         }
         th{
             background-color: #2143b2;
@@ -50,24 +50,24 @@
 
     <div id="container" class="flex">
         @include('layouts.sidebar_admin_dashboard')
-        <div id="content" class="bg-gray-100 w-[85%] mt-[70px] ml-[15%] h-screen">
-            <a class="bg-red-500 text-white rounded-sm p-1 ml-[70px]" href="{{route('category.create')}}">Add Category</a>
-            <table class="text-center mx-auto mt-[30px]">
+        <div id="content" class="ml-[15%] bg-gray-100 w-[85%] mt-[70px] h-screen">
+            <a class="bg-red-500 text-white rounded-sm p-1 ml-[70px]" href="{{route('category.create')}}">Add category</a>
+            <table class="mt-[30px]">
                 <tr>
-                    <th class="w-[50px]">STT</th>
-                    <th class="w-[400px]">NAME</th>
-                    <th class="w-[600px]">SLUG</th>
-                    <th>Function</th>
+                    <td class="w-[50px]">STT</td>
+                    <td class="w-[400px]">NAME</td>
+                    <td class="w-[400px]">SLUG</td>
+                    <td>Function</td>
                 </tr>
                 
                 @isset($categories)
                     @foreach ($categories as $category)
                         <tr>
-                            <td>{{$loop->index + 1}}</td>
+                            <td class="text-center">{{$loop->index + 1}}</td>
                             <td>{{$category->name}}</td>
                             <td>{{$category->slug}}</td>
-                            <td class="flex items-center">
-                                <a class="bg-red-500 text-white rounded-sm p-1" href="{{route('category.edit', ['category' => $category])}}">Edit</a>
+                            <td class="flex">
+                                <a class="bg-red-500 text-white rounded-sm p-1 ml-1" href="{{route('category.edit', ['category' => $category])}}">Edit</a>
                                 <form action="{{route('category.destroy', ['category' => $category])}}" method="POST">
                                     @method('DELETE')
                                     @csrf
@@ -78,6 +78,7 @@
                     @endforeach
                 @endisset
             </table>
+            {{$categories->links()}}
         </div>
     </div>
 </body>
